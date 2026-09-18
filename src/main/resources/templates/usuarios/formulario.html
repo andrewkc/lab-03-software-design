@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${usuario.id == null ? 'Nuevo usuario' : 'Editar usuario'} + ' | Lab 03'"></title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<header class="topbar"><strong>Administracion</strong><a class="button ghost" th:href="@{/usuarios}">Volver</a></header>
+<main class="container narrow">
+    <p class="eyebrow" th:text="${usuario.id == null ? 'NUEVO REGISTRO' : 'ACTUALIZAR REGISTRO'}"></p>
+    <h1 th:text="${usuario.id == null ? 'Crear usuario' : 'Editar usuario'}"></h1>
+    <form class="form-panel" method="post" th:action="@{/usuarios/guardar}" th:object="${usuario}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+        <input type="hidden" th:field="*{id}">
+        <label for="nombre">Nombre</label><input id="nombre" th:field="*{nombre}" required>
+        <small class="field-error" th:errors="*{nombre}"></small>
+        <label for="email">Email</label><input id="email" type="email" th:field="*{email}" required>
+        <small class="field-error" th:errors="*{email}"></small>
+        <label for="username">Usuario</label><input id="username" th:field="*{username}" required>
+        <small class="field-error" th:errors="*{username}"></small>
+        <label for="rol">Rol</label><select id="rol" th:field="*{rol}"><option value="admin">admin</option><option value="usuario">usuario</option></select>
+        <label for="password">Contrasena <span th:if="${usuario.id != null}">(dejar vacia para conservarla)</span></label>
+        <input id="password" type="password" th:field="*{password}" th:required="${usuario.id == null}">
+        <div class="form-actions"><a class="button ghost" th:href="@{/usuarios}">Cancelar</a><button class="button primary" type="submit">Guardar</button></div>
+    </form>
+</main>
+</body>
+</html>

@@ -4,6 +4,10 @@ Aplicacion web para el Laboratorio N.° 03 de Diseño de Software. El proyecto
 usara Spring Boot, PostgreSQL y Docker para cubrir autenticacion y CRUD de
 usuarios.
 
+Repositorio público:
+https://github.com/andrewkc/lab-03-software-design.git
+
+
 ## Requisitos
 
 - Java 11 o superior
